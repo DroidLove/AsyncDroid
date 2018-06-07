@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import inc.yoman.rxjavasample.R
 import inc.yoman.rxjavasample.fragment.APICallAsyncFragment
+import inc.yoman.rxjavasample.fragment.APICallCoroutinesFragment
+import inc.yoman.rxjavasample.fragment.APICallHelperCoroutinesFragment
 import inc.yoman.rxjavasample.fragment.APICallRxJavaFragment
 import kotlinx.android.synthetic.main.activity_second.*
 
@@ -23,6 +25,14 @@ class SecondActivity : AppCompatActivity() {
                 2 -> {
                     openFragment(APICallRxJavaFragment())
                     supportActionBar?.title = "APICall RxJava"
+                }
+                3 -> {
+                    openFragment(APICallCoroutinesFragment())
+                    supportActionBar?.title = "APICall Coroutines"
+                }
+                4 -> {
+                    openFragment(APICallHelperCoroutinesFragment())
+                    supportActionBar?.title = "APICall Helper Coroutines"
                 }
             }
         }

@@ -31,10 +31,7 @@ class APICallAsyncFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         activity?.let { ApiCallTask(it, list_api, pro_bar).execute() }
-
-
     }
 
     class ApiCallTask(activity: FragmentActivity, list_api: ListView, pro_bar: ProgressBar) : AsyncTask<Unit, Void, String>() {
