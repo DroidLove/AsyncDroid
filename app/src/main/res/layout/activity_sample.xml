@@ -3,58 +3,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="inc.yoman.rxjavasample.activity.MainActivity">
+    android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button_async_task"
+        android:id="@+id/button_basic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="API Call 1"
+        android:text="Basic Example"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_rx_java"
+        android:id="@+id/button_rx_java_disposable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="API Call 2"
+        android:text="Using Disposable"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_async_task" />
+        app:layout_constraintTop_toBottomOf="@+id/button_basic" />
 
     <Button
-        android:id="@+id/button_coroutines"
+        android:id="@+id/button_rx_java_operator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="API Call 3"
+        android:text="Using Operator"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_rx_java" />
+        app:layout_constraintTop_toBottomOf="@+id/button_rx_java_disposable" />
 
     <Button
-        android:id="@+id/button_helper_coroutines"
+        android:id="@+id/button_rx_java_compositeDisposable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="API Call 2"
+        android:text="Using CompositeDisposable"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_coroutines" />
+        app:layout_constraintTop_toBottomOf="@+id/button_rx_java_operator" />
+
+    <!--<Button-->
+        <!--android:id="@+id/button_rx_java_compositeDisposable"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:text="Using CompositeDisposable"-->
+        <!--android:textAllCaps="false"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/button_rx_java_operator" />-->
 </android.support.constraint.ConstraintLayout>
