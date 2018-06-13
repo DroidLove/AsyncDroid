@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import inc.yoman.rxjavasample.R
-import inc.yoman.rxjavasample.R.id.constraint_layout_fragment
 import inc.yoman.rxjavasample.fragment.*
 import kotlinx.android.synthetic.main.activity_sub_sample.*
 
@@ -31,6 +30,10 @@ class SubSampleActivity : AppCompatActivity() {
                 4 -> {
                     openFragment(RxJavaCompositeSampleFragment())
                     supportActionBar?.title = resources.getString(R.string.using_compositedisposable)
+                }
+                5 -> {
+                    openFragment(BasicRxJavaCompactSampleFragment())
+                    supportActionBar?.title = resources.getString(R.string.compact_sample)
                 }
             }
         }

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import inc.yoman.rxjavasample.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -24,6 +25,7 @@ class RxJavaCompositeSampleFragment : Fragment() {
     private var TAG = "RxJavaCompositeSampleFragment"
 
     private val compositeDisposable = CompositeDisposable()
+    var nameString : String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_sub_sample, container, false)
@@ -72,6 +74,7 @@ class RxJavaCompositeSampleFragment : Fragment() {
 
             override fun onNext(s: String) {
                 Log.d(TAG, "Name: $s")
+                nameString += "$s "
             }
 
             override fun onError(e: Throwable) {
@@ -80,6 +83,7 @@ class RxJavaCompositeSampleFragment : Fragment() {
 
             override fun onComplete() {
                 Log.d(TAG, "All items are emitted!")
+                Toast.makeText(activity,nameString,Toast.LENGTH_LONG).show()
             }
         }
     }

@@ -20,5 +20,9 @@ class SampleActivity : AppCompatActivity() {
         button_rx_java_operator.setOnClickListener { startActivity(intentFor<SubSampleActivity>("frag_id" to 3)) }
 
         button_rx_java_compositeDisposable.setOnClickListener { startActivity(intentFor<SubSampleActivity>("frag_id" to 4)) }
+
+        button_rx_java_sample_compact.setOnClickListener { startActivity(intentFor<SubSampleActivity>("frag_id" to 5)) }
+
+        button_api_calls.setOnClickListener { startActivity(intentFor<MainActivity>()) }
     }
 }
