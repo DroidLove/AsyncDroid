@@ -12,14 +12,18 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_sub_sample.*
 
 /**
  * Basic Observable, Observer, Subscriber example
  * Observable emits list of animal names
+ * You can see Disposable introduced in this example
  */
-class BasicRxJavaSampleFragment : Fragment() {
+class RxJavaDisposableSampleFragment : Fragment() {
 
-    private var TAG = "BasicRxJavaSampleFragment"
+    private var TAG = "RxJavaDisposableSampleFragment"
+
+    private lateinit var disposable: Disposable
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_sub_sample, container, false)
@@ -30,7 +34,7 @@ class BasicRxJavaSampleFragment : Fragment() {
 
         callRxJava()
 
-//        button_retry.setOnClickListener { callRxJava() }
+        button_retry.setOnClickListener { callRxJava() }
     }
 
     private fun callRxJava() {
@@ -51,6 +55,7 @@ class BasicRxJavaSampleFragment : Fragment() {
         return object : Observer<String> {
             override fun onSubscribe(d: Disposable) {
                 Log.d(TAG, "onSubscribe")
+                disposable = d
             }
 
             override fun onNext(s: String) {
@@ -69,5 +74,12 @@ class BasicRxJavaSampleFragment : Fragment() {
 
     private fun getAnimalsObservable(): Observable<String> {
         return Observable.just("Ant", "Bee", "Cat", "Dog", "Fox")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // don't send events once the activity is destroyed
+        disposable.dispose()
     }
 }

@@ -12,14 +12,19 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_sub_sample.*
 
 /**
  * Basic Observable, Observer, Subscriber example
  * Observable emits list of animal names
+ * You can see filter() operator is used to filter out the
+ * animal names that starts with letter `b`
  */
-class BasicRxJavaSampleFragment : Fragment() {
+class RxJavaOperatorSampleFragment : Fragment() {
 
-    private var TAG = "BasicRxJavaSampleFragment"
+    private var TAG = "RxJavaOperatorSampleFragment"
+
+    private lateinit var disposable: Disposable
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_sub_sample, container, false)
@@ -30,7 +35,7 @@ class BasicRxJavaSampleFragment : Fragment() {
 
         callRxJava()
 
-//        button_retry.setOnClickListener { callRxJava() }
+        button_retry.setOnClickListener { callRxJava() }
     }
 
     private fun callRxJava() {
@@ -42,15 +47,17 @@ class BasicRxJavaSampleFragment : Fragment() {
 
         // observer subscribing to observable
         animalsObservable
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(animalsObserver)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .filter { s -> s.toLowerCase().startsWith("b") }
+                .subscribeWith(animalsObserver)
     }
 
     private fun getAnimalsObserver(): Observer<String> {
         return object : Observer<String> {
             override fun onSubscribe(d: Disposable) {
                 Log.d(TAG, "onSubscribe")
+                disposable = d
             }
 
             override fun onNext(s: String) {
@@ -69,5 +76,12 @@ class BasicRxJavaSampleFragment : Fragment() {
 
     private fun getAnimalsObservable(): Observable<String> {
         return Observable.just("Ant", "Bee", "Cat", "Dog", "Fox")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // don't send events once the activity is destroyed
+        disposable.dispose()
     }
 }

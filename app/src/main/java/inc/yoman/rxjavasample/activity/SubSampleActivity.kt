@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import inc.yoman.rxjavasample.R
-import inc.yoman.rxjavasample.fragment.APICallCoroutinesFragment
-import inc.yoman.rxjavasample.fragment.APICallHelperCoroutinesFragment
-import inc.yoman.rxjavasample.fragment.APICallRxJavaFragment
-import inc.yoman.rxjavasample.fragment.BasicRxJavaSampleFragment
+import inc.yoman.rxjavasample.R.id.constraint_layout_fragment
+import inc.yoman.rxjavasample.fragment.*
 import kotlinx.android.synthetic.main.activity_sub_sample.*
 
 class SubSampleActivity : AppCompatActivity() {
@@ -20,19 +18,19 @@ class SubSampleActivity : AppCompatActivity() {
             when (intent.getIntExtra("frag_id", 0)) {
                 1 -> {
                     openFragment(BasicRxJavaSampleFragment())
-                    supportActionBar?.title = "APICall AsyncTask"
+                    supportActionBar?.title = resources.getString(R.string.basic_example)
                 }
                 2 -> {
-                    openFragment(APICallRxJavaFragment())
-                    supportActionBar?.title = "APICall RxJava"
+                    openFragment(RxJavaDisposableSampleFragment())
+                    supportActionBar?.title = resources.getString(R.string.using_disposable)
                 }
                 3 -> {
-                    openFragment(APICallCoroutinesFragment())
-                    supportActionBar?.title = "APICall Coroutines"
+                    openFragment(RxJavaOperatorSampleFragment())
+                    supportActionBar?.title = resources.getString(R.string.using_operator)
                 }
                 4 -> {
-                    openFragment(APICallHelperCoroutinesFragment())
-                    supportActionBar?.title = "APICall Helper Coroutines"
+                    openFragment(RxJavaCompositeSampleFragment())
+                    supportActionBar?.title = resources.getString(R.string.using_compositedisposable)
                 }
             }
         }
