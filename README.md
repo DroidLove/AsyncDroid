@@ -1,5 +1,5 @@
 # RxJavaSample
-Introduction to Reactive Programming - RxJava and RxAndroid with samples plus comparison with imperative procedural programming.
+Introduction to Reactive Programming - **RxJava** and **RxAndroid** with samples plus comparison with plain old Java (Imperative) style of Programming. The following samples will have fundamental concepts that are required for getting started with Reactive Programming.
 
 <p align="center"><img align="center" src="https://github.com/DroidLove/RxJavaSample/blob/master/screenshots/screenshot_01.png" alt="Alt text"></p>
 
