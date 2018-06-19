@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import inc.yoman.rxjavasample.R
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_sub_sample.*
 
 /**
@@ -40,7 +38,7 @@ class BasicRxJavaCompactSampleFragment : Fragment() {
         val animalsObservable = getAnimalsObservable()
 
         // observer
-        val animalsObserver = getAnimalsObserver()
+//        val animalsObserver = getAnimalsObserver()
 
         // observer subscribing to observable
         // inline subscriber that implements OnNext() and OnError() handlers
@@ -54,27 +52,27 @@ class BasicRxJavaCompactSampleFragment : Fragment() {
                 },{ e->})
     }
 
-    private fun getAnimalsObserver(): Observer<String> {
-        return object : Observer<String> {
-            override fun onSubscribe(d: Disposable) {
-                Log.d(TAG, "onSubscribe")
-            }
-
-            override fun onNext(s: String) {
-                Log.d(TAG, "Name: $s")
-            }
-
-            override fun onError(e: Throwable) {
-                Log.e(TAG, "onError: " + e.message)
-            }
-
-            override fun onComplete() {
-                Log.d(TAG, "All items are emitted!")
-            }
-        }
-    }
-
     private fun getAnimalsObservable(): Observable<String> {
         return Observable.just("Ant", "Bee", "Cat", "Dog", "Fox")
     }
+
+//    private fun getAnimalsObserver(): Observer<String> {
+//        return object : Observer<String> {
+//            override fun onSubscribe(d: Disposable) {
+//                Log.d(TAG, "onSubscribe")
+//            }
+//
+//            override fun onNext(s: String) {
+//                Log.d(TAG, "Name: $s")
+//            }
+//
+//            override fun onError(e: Throwable) {
+//                Log.e(TAG, "onError: " + e.message)
+//            }
+//
+//            override fun onComplete() {
+//                Log.d(TAG, "All items are emitted!")
+//            }
+//        }
+//    }
 }
