@@ -5,6 +5,6 @@
     android:id="@+id/constraint_layou_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="inc.yoman.rxjavasample.activity.SecondActivity">
+    tools:context="inc.yoman.rxjavasample.activity.ApiListingActivity">
 
 </android.support.constraint.ConstraintLayout>

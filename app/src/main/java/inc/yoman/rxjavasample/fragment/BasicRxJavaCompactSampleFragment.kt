@@ -43,6 +43,7 @@ class BasicRxJavaCompactSampleFragment : Fragment() {
         val animalsObserver = getAnimalsObserver()
 
         // observer subscribing to observable
+        // inline subscriber that implements OnNext() and OnError() handlers
         animalsObservable
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(AndroidSchedulers.mainThread())

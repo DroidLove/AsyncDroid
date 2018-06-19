@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">RxJavaSample</string>
+    <string name="basic_example">Basic Example</string>
+    <string name="using_disposable">Using Disposable</string>
+    <string name="using_operator">Using Operator</string>
+    <string name="using_compositedisposable">Using CompositeDisposable</string>
+    <string name="api_asyncTask">APICall AsyncTask</string>
+    <string name="api_rxjava">APICall RxJava</string>
+    <string name="api_coroutines">APICall Coroutines</string>
+    <string name="api_helper_coroutines">APICall Helper Coroutines</string>
+    <string name="compact_sample">Compact Sample</string>
+    <string name="http_api_calls">Http API calls</string>
 </resources>

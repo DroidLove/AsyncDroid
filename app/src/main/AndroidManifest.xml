@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.ApiCallingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SecondActivity"
+            android:name=".activity.ApiListingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SampleActivity"
