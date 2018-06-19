@@ -1,6 +1,8 @@
 # RxJavaSample
 Introduction to Reactive Programming - RxJava and RxAndroid with samples plus comparison with imperative procedural programming.
 
+<p align="center"><img align="center" src="https://github.com/DroidLove/RxJavaSample/blob/master/screenshots/screenshot_01.png" alt="Alt text"></p>
+
 ## Basics
 * [BasicRxJavaSampleFragment](https://github.com/DroidLove/RxJavaSample/blob/master/app/src/main/java/inc/yoman/rxjavasample/fragment/BasicRxJavaSampleFragment.kt) - Basic `Observable`, `Observer` and Subscription example. Emitting list of animal names.
 * [RxJavaDisposableSampleFragment](https://github.com/DroidLove/RxJavaSample/blob/master/app/src/main/java/inc/yoman/rxjavasample/fragment/RxJavaDisposableSampleFragment.kt) - Introduced Disposable to dispose the subscription.
