@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import inc.yoman.asyncdroid.R
-import inc.yoman.asyncdroid.fragment.APICallAsyncFragment
-import inc.yoman.asyncdroid.fragment.APICallCoroutinesFragment
-import inc.yoman.asyncdroid.fragment.APICallHelperCoroutinesFragment
-import inc.yoman.asyncdroid.fragment.APICallRxJavaFragment
+import inc.yoman.asyncdroid.fragment.*
 import kotlinx.android.synthetic.main.activity_second.*
 
 class ApiListingActivity : AppCompatActivity() {
@@ -33,6 +30,10 @@ class ApiListingActivity : AppCompatActivity() {
                 4 -> {
                     openFragment(APICallHelperCoroutinesFragment())
                     supportActionBar?.title = getString(R.string.api_helper_coroutines)
+                }
+                5 -> {
+                    openFragment(APICallCoroutinesWithDslFragment())
+                    supportActionBar?.title = getString(R.string.api_dsl_coroutines)
                 }
             }
         }
