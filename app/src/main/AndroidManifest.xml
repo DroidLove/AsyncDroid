@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="inc.yoman.rxjavasample">
+    package="inc.yoman.asyncdroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.ApiCallingActivity"
+            android:name="inc.yoman.asyncdroid.activity.ApiCallingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ApiListingActivity"
+            android:name="inc.yoman.asyncdroid.activity.ApiListingActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SampleActivity"
+            android:name="inc.yoman.asyncdroid.activity.SampleActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SubSampleActivity"></activity>
+        <activity android:name="inc.yoman.asyncdroid.activity.SubSampleActivity"></activity>
     </application>
 
 </manifest>

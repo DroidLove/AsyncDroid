@@ -1,4 +1,4 @@
-package inc.yoman.rxjavasample.fragment
+package inc.yoman.asyncdroid.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,18 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.google.gson.Gson
-import inc.yoman.rxjavasample.R
-import inc.yoman.rxjavasample.api.EmployeeModel
+import inc.yoman.asyncdroid.R
+import inc.yoman.asyncdroid.api.EmployeeModel
 import kotlinx.android.synthetic.main.fragment_api_listing.*
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
 import org.json.JSONObject
 
-class APICallHelperCoroutinesFragment : Fragment() {
+class APICallCoroutinesFragment : Fragment() {
 
     var url = "https://limitless-lake-93364.herokuapp.com/hello"
 
@@ -32,9 +34,8 @@ class APICallHelperCoroutinesFragment : Fragment() {
     }
 
     fun myCoroutine() {
-
-        launchAsync {
-            var result = asyncAwait {
+        launch(UI) {
+            val result = async(CommonPool) {
 
                 val request = Request.Builder()
                         .url(url)
@@ -47,12 +48,11 @@ class APICallHelperCoroutinesFragment : Fragment() {
                         .addInterceptor(logging).build()
 
                 client.newCall(request).execute()
-            }
+
+            }.await()
 
             handlingUI(result?.body()?.string())
-
         }
-
     }
 
     private fun mappingResult(result: String?): ArrayList<String> {
@@ -79,17 +79,4 @@ class APICallHelperCoroutinesFragment : Fragment() {
             list_api.adapter = adapter
         }
     }
-
-    fun launchAsync(block: suspend CoroutineScope.() -> Unit): Job {
-        return launch(UI) { block() }
-    }
-
-    suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
-        return async(CommonPool) { block() }
-    }
-
-    suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {
-        return async(block).await()
-    }
-
 }

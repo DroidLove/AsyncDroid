@@ -1,4 +1,4 @@
-package inc.yoman.rxjavasample.fragment
+package inc.yoman.asyncdroid.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,7 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import inc.yoman.rxjavasample.R
+import inc.yoman.asyncdroid.R
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,12 +17,11 @@ import kotlinx.android.synthetic.main.fragment_sub_sample.*
 /**
  * Basic Observable, Observer, Subscriber example
  * Observable emits list of animal names
- * You can see filter() operator is used to filter out the
- * animal names that starts with letter `b`
+ * You can see Disposable introduced in this example
  */
-class RxJavaOperatorSampleFragment : Fragment() {
+class RxJavaDisposableSampleFragment : Fragment() {
 
-    private var TAG = "RxJavaOperatorSampleFragment"
+    private var TAG = "RxJavaDisposableSampleFragment"
 
     private lateinit var disposable: Disposable
 
@@ -47,10 +46,9 @@ class RxJavaOperatorSampleFragment : Fragment() {
 
         // observer subscribing to observable
         animalsObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .filter { s -> s.toLowerCase().startsWith("b") }
-                .subscribeWith(animalsObserver)
+                .observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(animalsObserver)
     }
 
     private fun getAnimalsObserver(): Observer<String> {

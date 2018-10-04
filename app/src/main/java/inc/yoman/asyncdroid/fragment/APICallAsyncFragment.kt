@@ -1,4 +1,4 @@
-package inc.yoman.rxjavasample.fragment
+package inc.yoman.asyncdroid.fragment
 
 import android.os.AsyncTask
 import android.os.Bundle
@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.ProgressBar
 import com.google.gson.Gson
-import inc.yoman.rxjavasample.R
-import inc.yoman.rxjavasample.api.EmployeeModel
+import inc.yoman.asyncdroid.R
+import inc.yoman.asyncdroid.api.EmployeeModel
 import kotlinx.android.synthetic.main.fragment_api_listing.*
 import okhttp3.OkHttpClient
 import okhttp3.Request

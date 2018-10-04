@@ -1,10 +1,10 @@
-package inc.yoman.rxjavasample.activity
+package inc.yoman.asyncdroid.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import inc.yoman.rxjavasample.R
-import inc.yoman.rxjavasample.fragment.*
+import inc.yoman.asyncdroid.R
+import inc.yoman.asyncdroid.fragment.*
 import kotlinx.android.synthetic.main.activity_sub_sample.*
 
 class SubSampleActivity : AppCompatActivity() {

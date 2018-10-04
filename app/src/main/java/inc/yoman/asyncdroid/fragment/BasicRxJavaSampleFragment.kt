@@ -1,4 +1,4 @@
-package inc.yoman.rxjavasample.fragment
+package inc.yoman.asyncdroid.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -6,24 +6,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import inc.yoman.rxjavasample.R
+import inc.yoman.asyncdroid.R
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_sub_sample.*
 
 /**
  * Basic Observable, Observer, Subscriber example
  * Observable emits list of animal names
- * You can see Disposable introduced in this example
  */
-class RxJavaDisposableSampleFragment : Fragment() {
+class BasicRxJavaSampleFragment : Fragment() {
 
-    private var TAG = "RxJavaDisposableSampleFragment"
-
-    private lateinit var disposable: Disposable
+    private var TAG = "BasicRxJavaSampleFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_sub_sample, container, false)
@@ -34,7 +30,7 @@ class RxJavaDisposableSampleFragment : Fragment() {
 
         callRxJava()
 
-        button_retry.setOnClickListener { callRxJava() }
+//        button_retry.setOnClickListener { callRxJava() }
     }
 
     private fun callRxJava() {
@@ -55,7 +51,6 @@ class RxJavaDisposableSampleFragment : Fragment() {
         return object : Observer<String> {
             override fun onSubscribe(d: Disposable) {
                 Log.d(TAG, "onSubscribe")
-                disposable = d
             }
 
             override fun onNext(s: String) {
@@ -74,12 +69,5 @@ class RxJavaDisposableSampleFragment : Fragment() {
 
     private fun getAnimalsObservable(): Observable<String> {
         return Observable.just("Ant", "Bee", "Cat", "Dog", "Fox")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        // don't send events once the activity is destroyed
-        disposable.dispose()
     }
 }

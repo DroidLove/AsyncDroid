@@ -1,4 +1,4 @@
-package inc.yoman.rxjavasample.fragment
+package inc.yoman.asyncdroid.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import com.google.gson.Gson
-import inc.yoman.rxjavasample.R
-import inc.yoman.rxjavasample.api.EmployeeModel
+import inc.yoman.asyncdroid.R
+import inc.yoman.asyncdroid.api.EmployeeModel
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

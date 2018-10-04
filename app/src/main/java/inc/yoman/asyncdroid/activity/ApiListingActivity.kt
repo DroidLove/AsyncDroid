@@ -1,13 +1,13 @@
-package inc.yoman.rxjavasample.activity
+package inc.yoman.asyncdroid.activity
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import inc.yoman.rxjavasample.R
-import inc.yoman.rxjavasample.fragment.APICallAsyncFragment
-import inc.yoman.rxjavasample.fragment.APICallCoroutinesFragment
-import inc.yoman.rxjavasample.fragment.APICallHelperCoroutinesFragment
-import inc.yoman.rxjavasample.fragment.APICallRxJavaFragment
+import inc.yoman.asyncdroid.R
+import inc.yoman.asyncdroid.fragment.APICallAsyncFragment
+import inc.yoman.asyncdroid.fragment.APICallCoroutinesFragment
+import inc.yoman.asyncdroid.fragment.APICallHelperCoroutinesFragment
+import inc.yoman.asyncdroid.fragment.APICallRxJavaFragment
 import kotlinx.android.synthetic.main.activity_second.*
 
 class ApiListingActivity : AppCompatActivity() {

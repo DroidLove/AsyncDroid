@@ -1,4 +1,4 @@
-package inc.yoman.rxjavasample.api
+package inc.yoman.asyncdroid.api
 
 /**
  * Created by Jitesh on 13/03/18.

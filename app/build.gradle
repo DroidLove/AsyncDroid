@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "inc.yoman.rxjavasample"
+        applicationId "inc.yoman.asyncdroid"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1

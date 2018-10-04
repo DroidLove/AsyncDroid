@@ -1,8 +1,8 @@
-package inc.yoman.rxjavasample.activity
+package inc.yoman.asyncdroid.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import inc.yoman.rxjavasample.R
+import inc.yoman.asyncdroid.R
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.intentFor
 
