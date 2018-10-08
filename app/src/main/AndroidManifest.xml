@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="inc.yoman.asyncdroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,23 +11,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name="inc.yoman.asyncdroid.activity.ApiCallingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="inc.yoman.asyncdroid.activity.ApiListingActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="inc.yoman.asyncdroid.activity.SampleActivity"
-            android:screenOrientation="portrait">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.SampleListingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="inc.yoman.asyncdroid.activity.SubSampleActivity"></activity>
+        <activity
+            android:name=".activity.ApiCallingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ApiListingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RxJavaSampleActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.SubSampleActivity" />
+        <activity android:name=".activity.CoroutinesSampleActivity"></activity>
     </application>
 
 </manifest>

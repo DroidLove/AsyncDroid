@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.activity_sample.*
 import org.jetbrains.anko.intentFor
 
 
-class SampleActivity : AppCompatActivity() {
+class RxJavaSampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

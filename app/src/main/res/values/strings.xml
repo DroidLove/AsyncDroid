@@ -11,4 +11,7 @@
     <string name="api_dsl_coroutines">APICall Coroutines with DSL</string>
     <string name="compact_sample">Compact Sample</string>
     <string name="http_api_calls">Http API calls</string>
+    <string name="title_activity_sample_listing">SampleListingActivity</string>
+    <string name="coroutines">Coroutines Samples</string>
+    <string name="rxjava_samples">RxJava Samples</string>
 </resources>
