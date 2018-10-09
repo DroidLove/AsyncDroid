@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import inc.yoman.asyncdroid.R
+import inc.yoman.asyncdroid.R.id.constraint_layout_fragment
 import inc.yoman.asyncdroid.fragment.*
 import kotlinx.android.synthetic.main.activity_sub_sample.*
 
@@ -35,9 +36,17 @@ class SubSampleActivity : AppCompatActivity() {
                     openFragment(BasicRxJavaCompactSampleFragment())
                     supportActionBar?.title = resources.getString(R.string.compact_sample)
                 }
+                6 -> {
+                    openFragment(CoroutineSuspendFragment())
+                    supportActionBar?.title = resources.getString(R.string.compact_sample)
+                }
+                7 -> {
+                    openFragment(CoroutineWithLaunchFragment())
+                    supportActionBar?.title = resources.getString(R.string.compact_sample)
+                }
+                }
             }
         }
-    }
 
     private fun openFragment(fragment: Fragment) {
         supportFragmentManager

@@ -6,7 +6,6 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.OnLifecycleEvent
 import android.util.Log
 import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.android.UI
 
 // Quick & dirty logcat extensions
 inline fun <reified T> T.logd(message: () -> String) = Log.d(T::class.simpleName, message())
@@ -30,9 +29,9 @@ internal val Background = newFixedThreadPoolContext(Runtime.getRuntime().availab
  * The coroutine is automatically cancelled using the CoroutineLifecycleListener.
  */
 fun <T> LifecycleOwner.load(loader: suspend () -> T): Deferred<T> {
-  val deferred = async(context = Background, start = CoroutineStart.LAZY) {
-    loader()
-  }
+  val deferred = GlobalScope.async(context = Background, start = CoroutineStart.LAZY, block = {
+      loader()
+  })
 
   lifecycle.addObserver(CoroutineLifecycleListener(deferred))
   return deferred
@@ -43,14 +42,14 @@ fun <T> LifecycleOwner.load(loader: suspend () -> T): Deferred<T> {
  * will call <code>await()</code> and pass the returned value to <code>block()</code>.
  */
 infix fun <T> Deferred<T>.then(block: suspend (T) -> Unit): Job {
-  return launch(context = UI) {
-    try {
-      block(this@then.await())
-    } catch (e: Exception) {
-      // Just log the exception to confirm when we get cancelled (Expect JobCancellationException)
-      loge(e) { "Exception in then()!" }
-      throw e
-    }
-  }
+  return GlobalScope.launch(context = Dispatchers.Main, block = {
+      try {
+          block(this@then.await())
+      } catch (e: Exception) {
+          // Just log the exception to confirm when we get cancelled (Expect JobCancellationException)
+          loge(e) { "Exception in then()!" }
+          throw e
+      }
+  })
 }
 
