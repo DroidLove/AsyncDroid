@@ -10,7 +10,7 @@ import inc.yoman.asyncdroid.R
 import kotlinx.android.synthetic.main.fragment_sub_sample.*
 import kotlinx.coroutines.experimental.*
 
-class CoroutineWithLaunchFragment: Fragment() {
+class CoroutineWithAsyncFragment: Fragment() {
 
     private var TAG = "CoroutineWithLaunchFragment"
 
@@ -30,17 +30,7 @@ class CoroutineWithLaunchFragment: Fragment() {
     }
 
     private fun startCoroutine() {
-        textView_result.text = ""
-        GlobalScope.launch(uiDispatcher) { // launch new coroutine in background and continue
-            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-            printResult("World!") // print after delay
-        }
-        printResult("Hello ") // main thread continues while coroutine is delayed
-//        Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
-    }
-
-    private fun basicCoroutineTwo() {
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(uiDispatcher) {
             var task1 = GlobalScope.async(Dispatchers.Main) {
                 delay(2000)
                 return@async "Hello"

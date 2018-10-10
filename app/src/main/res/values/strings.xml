@@ -14,4 +14,8 @@
     <string name="title_activity_sample_listing">SampleListingActivity</string>
     <string name="coroutines">Coroutines Samples</string>
     <string name="rxjava_samples">RxJava Samples</string>
+    <string name="coroutine_using_launch">Coroutine Using Launch</string>
+    <string name="coroutine_using_async">Coroutine Using Async</string>
+    <string name="cancel_coroutine">Cancel Coroutine</string>
+    <string name="suspend_function">Suspend Function</string>
 </resources>

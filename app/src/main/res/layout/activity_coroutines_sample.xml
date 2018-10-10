@@ -5,42 +5,55 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button_coroutines_samples"
+        android:id="@+id/button_coroutines_using_launch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Suspend"
+        android:layout_marginEnd="8dp"
+        android:text="@string/coroutine_using_launch"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_rx_java_samples"
+        android:id="@+id/button_coroutines_using_async"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Async"
+        android:layout_marginEnd="8dp"
+        android:text="@string/coroutine_using_async"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_coroutines_samples" />
+        app:layout_constraintTop_toBottomOf="@+id/button_coroutines_using_launch" />
 
     <Button
-        android:id="@+id/button_http_api_calls"
+        android:id="@+id/button_cancel_coroutine"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/http_api_calls"
+        android:layout_marginEnd="8dp"
+        android:text="@string/cancel_coroutine"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_rx_java_samples" />
+        app:layout_constraintTop_toBottomOf="@+id/button_coroutines_using_async" />
+
+    <Button
+        android:id="@+id/button_suspend_function"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/suspend_function"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_cancel_coroutine" />
 
 </android.support.constraint.ConstraintLayout>
