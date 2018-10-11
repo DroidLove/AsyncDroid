@@ -38,7 +38,7 @@ class CoroutineWithAsyncFragment: Fragment() {
 
             var task2 = GlobalScope.async(Dispatchers.Main) {
                 delay(5000)
-                return@async " World!"
+                return@async " Coroutine!"
             }
 
             printResult(task1.await() + task2.await())

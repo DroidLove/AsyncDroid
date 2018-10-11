@@ -21,5 +21,7 @@ class ApiCallingActivity : AppCompatActivity() {
         button_helper_coroutines.setOnClickListener { startActivity(intentFor<ApiListingActivity>("frag_id" to 4)) }
 
         button_coroutines_dsl.setOnClickListener { startActivity(intentFor<ApiListingActivity>("frag_id" to 5)) }
+
+        button_retrofit_coroutines.setOnClickListener { startActivity(intentFor<ApiListingActivity>("frag_id" to 6)) }
     }
 }

@@ -35,6 +35,10 @@ class ApiListingActivity : AppCompatActivity() {
                     openFragment(APICallCoroutinesWithDslFragment())
                     supportActionBar?.title = getString(R.string.api_dsl_coroutines)
                 }
+                6 -> {
+                    openFragment(APICallRetrofitCoroutinesFragment())
+                    supportActionBar?.title = getString(R.string.api_retrofit_coroutines)
+                }
             }
         }
     }

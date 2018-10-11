@@ -3,6 +3,7 @@ package inc.yoman.asyncdroid.fragment
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +14,16 @@ import kotlinx.android.synthetic.main.fragment_suspend_function.*
 import kotlinx.coroutines.experimental.*
 import java.util.*
 
-class CoroutineSuspendFragment: Fragment() {
+class CoroutineSuspendFragment : Fragment() {
 
     private var TAG = "CoroutineSuspendFragment"
 
+    private val uiDispatcher: CoroutineDispatcher = Dispatchers.Main
+
     private var raceEnd = false
     private var greenJob: Job? = Job()
-    private var redJob: Job? = null
-    private var blueJob: Job? = null
+    private var redJob: Job? = Job()
+    private var blueJob: Job? = Job()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_suspend_function, container, false)
@@ -37,15 +40,15 @@ class CoroutineSuspendFragment: Fragment() {
     private fun startUpdate() {
         resetRun()
 
-        greenJob = GlobalScope.launch(Dispatchers.Main) {
+        greenJob = GlobalScope.launch(uiDispatcher) {
             startRunning(progressBarGreen)
         }
 
-        redJob = GlobalScope.launch(Dispatchers.Main) {
+        redJob = GlobalScope.launch(uiDispatcher) {
             startRunning(progressBarRed)
         }
 
-        blueJob = GlobalScope.launch(Dispatchers.Main) {
+        blueJob = GlobalScope.launch(uiDispatcher) {
             startRunning(progressBarBlue)
         }
     }
@@ -56,7 +59,16 @@ class CoroutineSuspendFragment: Fragment() {
         postRaceResult(progressBar)
     }
 
-    private fun postRaceResult(progressBar: RoundCornerProgressBar) {
+    private suspend fun calculateProgress(progressBar: RoundCornerProgressBar) {
+        while (progressBar.progress < 1000 && !raceEnd) {
+            Log.e("Coroutine Run 1", "Process: ${Thread.currentThread()}")
+            delay(10)
+            progressBar.progress += (1..10).random()
+            Log.e("Coroutine Run 2", "Process: ${Thread.currentThread()}")
+        }
+    }
+
+    private suspend fun postRaceResult(progressBar: RoundCornerProgressBar) {
         if (!raceEnd) {
             raceEnd = true
 
@@ -66,15 +78,8 @@ class CoroutineSuspendFragment: Fragment() {
         }
     }
 
-    private suspend fun calculateProgress(progressBar: RoundCornerProgressBar) {
-        while (progressBar.progress < 1000 && !raceEnd) {
-            delay(10)
-            progressBar.progress += (1..10).random()
-        }
-    }
-
     fun ClosedRange<Int>.random() =
-            Random().nextInt(endInclusive - start) +  start
+            Random().nextInt(endInclusive - start) + start
 
     private fun resetRun() {
         raceEnd = false

@@ -9,6 +9,7 @@
     <string name="api_coroutines">APICall Coroutines</string>
     <string name="api_helper_coroutines">APICall Helper Coroutines</string>
     <string name="api_dsl_coroutines">APICall Coroutines with DSL</string>
+    <string name="api_retrofit_coroutines">APICall Retrofit Coroutines</string>
     <string name="compact_sample">Compact Sample</string>
     <string name="http_api_calls">Http API calls</string>
     <string name="title_activity_sample_listing">SampleListingActivity</string>
@@ -18,4 +19,5 @@
     <string name="coroutine_using_async">Coroutine Using Async</string>
     <string name="cancel_coroutine">Cancel Coroutine</string>
     <string name="suspend_function">Suspend Function</string>
+    <string name="multiple_coroutine">Multiple Coroutine</string>
 </resources>

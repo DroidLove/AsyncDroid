@@ -19,5 +19,9 @@ class CoroutinesSampleActivity : AppCompatActivity() {
         button_cancel_coroutine.setOnClickListener { startActivity(intentFor<SubSampleActivity>("frag_id" to 8)) }
 
         button_suspend_function.setOnClickListener { startActivity(intentFor<SubSampleActivity>("frag_id" to 9)) }
+
+        button_multiple_coroutine.setOnClickListener { startActivity(intentFor<SubSampleActivity>("frag_id" to 10)) }
+
+        button_http_api_calls.setOnClickListener { startActivity(intentFor<ApiCallingActivity>()) }
     }
 }

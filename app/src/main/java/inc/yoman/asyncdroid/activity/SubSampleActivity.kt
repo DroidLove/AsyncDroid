@@ -51,6 +51,10 @@ class SubSampleActivity : AppCompatActivity() {
                     openFragment(CoroutineSuspendFragment())
                     supportActionBar?.title = resources.getString(R.string.suspend_function)
                 }
+                10 -> {
+                    openFragment(CoroutineMultipleFragment())
+                    supportActionBar?.title = resources.getString(R.string.multiple_coroutine)
+                }
                 }
             }
         }

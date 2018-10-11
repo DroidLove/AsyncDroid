@@ -2,14 +2,16 @@ package inc.yoman.asyncdroid.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import inc.yoman.asyncdroid.R
 import kotlinx.android.synthetic.main.fragment_sub_sample.*
 import kotlinx.coroutines.experimental.*
+import kotlin.concurrent.thread
 
-class CoroutineWithLaunchFragment: Fragment() {
+class CoroutineMultipleFragment: Fragment() {
 
     private var TAG = "CoroutineWithLaunchFragment"
 
@@ -24,21 +26,31 @@ class CoroutineWithLaunchFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         button_retry.setOnClickListener {
-            startCoroutine()
+//            startCoroutine()
+            startThread()
         }
     }
 
     private fun startCoroutine() {
-        textView_result.text = ""
-        GlobalScope.launch(uiDispatcher) { // launch new coroutine in background and continue
-            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-            printResult("World!") // print after delay
-
-            delay(1000)
-            printResult("\n I am Coroutine")
+        runBlocking(bgDispatcher) {
+            val jobs = List(100000) {
+                launch {
+                    delay(100L)
+                    Log.e("Coroutinue Count", "* "+ it.toString() + "Process: ${Thread.currentThread()}")
+                }
+            }
+            jobs.forEach { it.join() }
         }
-        printResult("Hello ") // main thread continues while coroutine is delayed
-//        Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
+    }
+
+    private fun startThread() {
+            val threads = List(100000) {
+                thread {
+                    Thread.sleep(1000L)
+                    Log.e("Thread Count", "* "+ it.toString() + "Process: ${Thread.currentThread()}")
+                }
+            }
+        threads.forEach { it.join() }
     }
 
     private fun printResult(output: String) {
