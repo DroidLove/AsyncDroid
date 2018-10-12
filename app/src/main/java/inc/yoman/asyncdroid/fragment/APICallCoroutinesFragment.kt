@@ -21,7 +21,7 @@ import org.json.JSONObject
 class APICallCoroutinesFragment : Fragment() {
 
     var url = "https://limitless-lake-93364.herokuapp.com/hello"
-
+    var parent: Job? = Job()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_api_listing, container, false)
@@ -33,12 +33,12 @@ class APICallCoroutinesFragment : Fragment() {
     }
 
     private fun myCoroutine() {
-        GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT) {
+        parent = GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT) {
             val result = async(Dispatchers.IO) {
                 apiCall()
-            }.await()
-
-            handlingUI(result?.body()?.string())
+            }
+            val deferredValue = result.await()
+            handlingUI(deferredValue?.body()?.string())
         }
     }
 
@@ -79,5 +79,10 @@ class APICallCoroutinesFragment : Fragment() {
                     android.R.layout.simple_list_item_1, resultList)
             list_api.adapter = adapter
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        parent?.cancel()
     }
 }

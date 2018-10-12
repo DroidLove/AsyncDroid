@@ -3,7 +3,6 @@ package inc.yoman.asyncdroid.fragment
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,10 +60,8 @@ class CoroutineSuspendFragment : Fragment() {
 
     private suspend fun calculateProgress(progressBar: RoundCornerProgressBar) {
         while (progressBar.progress < 1000 && !raceEnd) {
-            Log.e("Coroutine Run 1", "Process: ${Thread.currentThread()}")
-            delay(1000)
+            delay(100)
             progressBar.progress += (1..10).random()
-            Log.e("Coroutine Run 2", "Process: ${Thread.currentThread()}")
         }
     }
 
