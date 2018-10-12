@@ -11,9 +11,9 @@ import inc.yoman.asyncdroid.R
 import inc.yoman.asyncdroid.api.EmployeeModel
 import kotlinx.android.synthetic.main.fragment_api_listing.*
 import kotlinx.coroutines.experimental.*
-import kotlinx.coroutines.experimental.android.UI
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
 import org.json.JSONObject
@@ -31,28 +31,27 @@ class APICallHelperCoroutinesFragment : Fragment() {
         activity?.let { myCoroutine() }
     }
 
-    fun myCoroutine() {
-
+    private fun myCoroutine() {
         launchAsync {
             var result = asyncAwait {
-
-                val request = Request.Builder()
-                        .url(url)
-                        .build()
-
-                val logging = HttpLoggingInterceptor()
-                logging.level = HttpLoggingInterceptor.Level.BODY
-
-                var client = OkHttpClient.Builder()
-                        .addInterceptor(logging).build()
-
-                client.newCall(request).execute()
+               apiCall()
             }
-
             handlingUI(result?.body()?.string())
-
         }
+    }
 
+    private fun apiCall(): Response? {
+        val request = Request.Builder()
+                .url(url)
+                .build()
+
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        var client = OkHttpClient.Builder()
+                .addInterceptor(logging).build()
+
+        return client.newCall(request).execute()
     }
 
     private fun mappingResult(result: String?): ArrayList<String> {
@@ -80,15 +79,15 @@ class APICallHelperCoroutinesFragment : Fragment() {
         }
     }
 
-    fun launchAsync(block: suspend CoroutineScope.() -> Unit): Job {
-        return launch(UI) { block() }
+    private fun launchAsync(block: suspend CoroutineScope.() -> Unit): Job {
+        return GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT, null, { block() })
     }
 
-    suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
-        return async(CommonPool) { block() }
+    private suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
+        return GlobalScope.async(CommonPool, CoroutineStart.DEFAULT, null, { block() })
     }
 
-    suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {
+    private suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {
         return async(block).await()
     }
 

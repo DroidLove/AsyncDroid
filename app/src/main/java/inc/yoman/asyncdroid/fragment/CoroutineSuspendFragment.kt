@@ -62,7 +62,7 @@ class CoroutineSuspendFragment : Fragment() {
     private suspend fun calculateProgress(progressBar: RoundCornerProgressBar) {
         while (progressBar.progress < 1000 && !raceEnd) {
             Log.e("Coroutine Run 1", "Process: ${Thread.currentThread()}")
-            delay(10)
+            delay(1000)
             progressBar.progress += (1..10).random()
             Log.e("Coroutine Run 2", "Process: ${Thread.currentThread()}")
         }

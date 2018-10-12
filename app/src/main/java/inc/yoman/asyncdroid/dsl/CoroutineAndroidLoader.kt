@@ -20,10 +20,6 @@ internal class CoroutineLifecycleListener(private val deferred: Deferred<*>) : L
   }
 }
 
-/**
- * Creates a lazily started coroutine that runs <code>loader()</code>.
- * The coroutine is automatically cancelled using the CoroutineLifecycleListener.
- */
 fun <T> LifecycleOwner.load(loader: suspend () -> T): Deferred<T> {
   val deferred = GlobalScope.async(context = Background, start = CoroutineStart.LAZY, block = {
       loader()

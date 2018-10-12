@@ -1,5 +1,6 @@
 package inc.yoman.asyncdroid.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -33,6 +34,7 @@ class APICallRxJavaFragment : Fragment() {
         apiCall()
     }
 
+    @SuppressLint("CheckResult")
     private fun apiCall() {
         Flowable.fromCallable {
             val request = Request.Builder()
@@ -59,7 +61,7 @@ class APICallRxJavaFragment : Fragment() {
                         list_api.adapter = adapter
                     }
 
-                }, { e ->
+                }, { e -> Log.e("Exception", e.toString())
                 })
     }
 

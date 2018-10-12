@@ -54,8 +54,6 @@ class APICallAsyncFragment : Fragment() {
         }
 
         override fun onPreExecute() {
-            super.onPreExecute()
-
             val logging = HttpLoggingInterceptor()
             logging.level = HttpLoggingInterceptor.Level.BODY
             client = OkHttpClient.Builder()
@@ -63,8 +61,6 @@ class APICallAsyncFragment : Fragment() {
         }
 
         override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-
             var jsonObj = JSONObject(result)
             var jsonArray = JSONArray(jsonObj.get("employee").toString())
 

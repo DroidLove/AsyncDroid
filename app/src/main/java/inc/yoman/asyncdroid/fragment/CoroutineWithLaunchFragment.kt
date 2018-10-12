@@ -35,6 +35,9 @@ class CoroutineWithLaunchFragment: Fragment() {
             printResult("World!") // print after delay
 
             delay(1000)
+            withContext(uiDispatcher) {
+
+            }
             printResult("\n I am Coroutine")
         }
         printResult("Hello ") // main thread continues while coroutine is delayed

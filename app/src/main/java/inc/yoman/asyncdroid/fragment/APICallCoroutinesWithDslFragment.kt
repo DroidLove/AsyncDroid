@@ -14,6 +14,7 @@ import inc.yoman.asyncdroid.dsl.then
 import kotlinx.android.synthetic.main.fragment_api_listing.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
 import org.json.JSONObject
@@ -31,23 +32,26 @@ class APICallCoroutinesWithDslFragment : Fragment() {
         myCoroutine()
     }
 
-    fun myCoroutine() {
+    private fun myCoroutine() {
         load {
-            val request = Request.Builder()
-                    .url(url)
-                    .build()
-
-            val logging = HttpLoggingInterceptor()
-            logging.level = HttpLoggingInterceptor.Level.BODY
-
-            var client = OkHttpClient.Builder()
-                    .addInterceptor(logging).build()
-
-            client.newCall(request).execute()
+            apiCall()
         } then {
             handlingUI(it?.body()?.string())
         }
+    }
 
+    private fun apiCall(): Response? {
+        val request = Request.Builder()
+                .url(url)
+                .build()
+
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        var client = OkHttpClient.Builder()
+                .addInterceptor(logging).build()
+
+        return client.newCall(request).execute()
     }
 
     private fun handlingUI(result: String?) {

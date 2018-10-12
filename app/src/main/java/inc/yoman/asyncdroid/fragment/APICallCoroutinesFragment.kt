@@ -10,12 +10,10 @@ import com.google.gson.Gson
 import inc.yoman.asyncdroid.R
 import inc.yoman.asyncdroid.api.EmployeeModel
 import kotlinx.android.synthetic.main.fragment_api_listing.*
-import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONArray
 import org.json.JSONObject
@@ -23,6 +21,7 @@ import org.json.JSONObject
 class APICallCoroutinesFragment : Fragment() {
 
     var url = "https://limitless-lake-93364.herokuapp.com/hello"
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_api_listing, container, false)
@@ -33,26 +32,28 @@ class APICallCoroutinesFragment : Fragment() {
         activity?.let { myCoroutine() }
     }
 
-    fun myCoroutine() {
-        launch(UI) {
-            val result = async(CommonPool) {
-
-                val request = Request.Builder()
-                        .url(url)
-                        .build()
-
-                val logging = HttpLoggingInterceptor()
-                logging.level = HttpLoggingInterceptor.Level.BODY
-
-                var client = OkHttpClient.Builder()
-                        .addInterceptor(logging).build()
-
-                client.newCall(request).execute()
-
+    private fun myCoroutine() {
+        GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT) {
+            val result = async(Dispatchers.IO) {
+                apiCall()
             }.await()
 
             handlingUI(result?.body()?.string())
         }
+    }
+
+    private fun apiCall(): Response? {
+        val request = Request.Builder()
+                .url(url)
+                .build()
+
+        val logging = HttpLoggingInterceptor()
+        logging.level = HttpLoggingInterceptor.Level.BODY
+
+        var client = OkHttpClient.Builder()
+                .addInterceptor(logging).build()
+
+        return client.newCall(request).execute()
     }
 
     private fun mappingResult(result: String?): ArrayList<String> {
