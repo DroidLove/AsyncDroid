@@ -10,7 +10,7 @@ import com.google.gson.Gson
 import inc.yoman.asyncdroid.R
 import inc.yoman.asyncdroid.api.EmployeeModel
 import kotlinx.android.synthetic.main.fragment_api_listing.*
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -80,11 +80,11 @@ class APICallHelperCoroutinesFragment : Fragment() {
     }
 
     private fun launchAsync(block: suspend CoroutineScope.() -> Unit): Job {
-        return GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT, null, { block() })
+        return GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT) { block() }
     }
 
     private suspend fun <T> async(block: suspend CoroutineScope.() -> T): Deferred<T> {
-        return GlobalScope.async(CommonPool, CoroutineStart.DEFAULT, null, { block() })
+        return GlobalScope.async(Dispatchers.IO, CoroutineStart.DEFAULT) { block() }
     }
 
     private suspend fun <T> asyncAwait(block: suspend CoroutineScope.() -> T): T {

@@ -2,13 +2,12 @@ package inc.yoman.asyncdroid.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import inc.yoman.asyncdroid.R
 import kotlinx.android.synthetic.main.fragment_cancel_coroutine.*
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 
 class CoroutineCancellationFragment : Fragment() {
 
@@ -50,7 +49,7 @@ class CoroutineCancellationFragment : Fragment() {
             if (it == null) {
                 printResult("Coroutine Completed: Increment Done")
             } else {
-                Log.e("Cancellation", parentJob?.getCancellationException().toString())
+//                Log.e("Cancellation", parentJob?.getCancellationException().toString())
             }
         }
 

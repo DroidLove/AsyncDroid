@@ -14,9 +14,9 @@ import inc.yoman.asyncdroid.api.EmployeeModel
 import inc.yoman.asyncdroid.dsl.load
 import inc.yoman.asyncdroid.dsl.then
 import kotlinx.android.synthetic.main.fragment_api_listing.*
-import kotlinx.coroutines.experimental.Dispatchers
-import kotlinx.coroutines.experimental.GlobalScope
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor

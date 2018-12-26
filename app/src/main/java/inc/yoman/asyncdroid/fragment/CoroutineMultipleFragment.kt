@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import inc.yoman.asyncdroid.R
 import kotlinx.android.synthetic.main.fragment_sub_sample.*
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 import kotlin.concurrent.thread
 
 class CoroutineMultipleFragment: Fragment() {

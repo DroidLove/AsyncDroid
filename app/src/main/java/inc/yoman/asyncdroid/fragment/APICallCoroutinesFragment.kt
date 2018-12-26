@@ -10,7 +10,7 @@ import com.google.gson.Gson
 import inc.yoman.asyncdroid.R
 import inc.yoman.asyncdroid.api.EmployeeModel
 import kotlinx.android.synthetic.main.fragment_api_listing.*
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response

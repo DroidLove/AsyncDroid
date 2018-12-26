@@ -23,7 +23,7 @@ android {
 }
 
 ext {
-    kotlin_coroutines_version = '0.30.1'
+    kotlin_coroutines_version = '1.0.0'
 }
 
 dependencies {

@@ -10,7 +10,7 @@ import android.widget.Toast
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
 import inc.yoman.asyncdroid.R
 import kotlinx.android.synthetic.main.fragment_suspend_function.*
-import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.*
 import java.util.*
 
 class CoroutineSuspendFragment : Fragment() {
