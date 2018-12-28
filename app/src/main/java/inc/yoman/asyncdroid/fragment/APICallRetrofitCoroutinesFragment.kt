@@ -31,9 +31,7 @@ class APICallRetrofitCoroutinesFragment : Fragment() {
         myCoroutineRetrofit()
     }
 
-    private fun myCoroutineRetrofit(): ArrayList<String> {
-        val loginResult = ArrayList<String>()
-
+    private fun myCoroutineRetrofit() {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 val request = retroApiInterface.getEmployeeListing()
@@ -43,8 +41,6 @@ class APICallRetrofitCoroutinesFragment : Fragment() {
                 Log.e("Retrofit Exception", exception.toString())
             }
         }
-
-        return loginResult
     }
 
     private fun handlingUI(response: EmployeeListModel?) {
